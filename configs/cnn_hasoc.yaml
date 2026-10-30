@@ -1,0 +1,31 @@
+experiment_name: cnn_hasoc
+seed: 42
+output_dir: results/cnn_hasoc
+
+data:
+  dataset: hasoc
+  # Check the real file names and column names after downloading HASOC, then edit these.
+  train_path: data/raw/hasoc/train.csv
+  test_path: data/raw/hasoc/test.csv
+  text_column: text
+  label_column: task_1
+  label_map:            # keep keys in quotes so YAML reads them as text
+    "NOT": 0
+    "HOF": 1
+  val_size: 0.1
+  lowercase: true
+
+model:
+  type: cnn
+  embedding_dim: 300
+  num_filters: 100
+  kernel_sizes: [3, 4, 5]
+  dropout: 0.5
+  max_length: 100
+  min_freq: 2
+  num_labels: 2
+
+training:
+  batch_size: 64
+  epochs: 10
+  learning_rate: 1.0e-3

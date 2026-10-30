@@ -1,0 +1,34 @@
+experiment_name: muril_stage2_hasoc_from_plain
+seed: 42
+output_dir: results/muril_stage2_hasoc_from_plain
+init_checkpoint: results/muril_stage1_hatexplain_plain/best_model.pt
+
+data:
+  dataset: hasoc
+  # Check the real file names and column names after downloading HASOC, then edit these.
+  train_path: data/raw/hasoc/train.csv
+  test_path: data/raw/hasoc/test.csv
+  text_column: text
+  label_column: task_1
+  label_map:            # keep keys in quotes so YAML reads them as text
+    "NOT": 0
+    "HOF": 1
+  val_size: 0.1
+  lowercase: true
+
+model:
+  type: transformer
+  pretrained_name: google/muril-base-cased
+  max_length: 128
+  dropout: 0.1
+  num_labels: 2
+
+training:
+  batch_size: 16
+  epochs: 4
+  learning_rate: 2.0e-5
+  weight_decay: 0.01
+  warmup_ratio: 0.1
+
+rationale:
+  lambda: 0   # 0 = no rationale supervision; try 0.1, 1, 10, 100

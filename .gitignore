@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# Data (do NOT commit datasets; see data/README.md)
+data/raw/**
+!data/raw/**/
+!data/raw/**/.gitkeep
+data/processed/**
+!data/processed/.gitkeep
+
+# Model checkpoints and large outputs
+*.pt
+*.bin
+*.safetensors
+results/**/checkpoints/
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
